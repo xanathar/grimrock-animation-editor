@@ -637,25 +637,16 @@ namespace GrimrockAnimationTweaker
 
         private void toolNewNode_Click(object sender, EventArgs e)
         {
-            HashSet<string> nodeNames = new HashSet<string>();
+            HashSet<string> nodeNamesDisabled = new HashSet<string>();
 
             GrimAnimation ga = this.GetAnimationFromSelection(animEditor.Selection);
 
             if (ga == null) return;
 
-            foreach (var n in m_Model.Nodes)
-                nodeNames.Add(n.Name);
-
             foreach (GrimAnimationItem gai in ga.Items)
-                nodeNames.Remove(gai.NodeName);
+                nodeNamesDisabled.Add(gai.NodeName);
 
-            if (nodeNames.Count == 0)
-            {
-                MessageBox.Show(this, "No nodes to add", "Can't add");
-                return;
-            }
-
-            IEnumerable<string> nodesToAdd = NodeSelectionDialog.GetSelectedNodes(nodeNames);
+            IEnumerable<string> nodesToAdd = NodeSelectionDialog.GetSelectedNodes(m_Model, nodeNamesDisabled);
 
             if (nodesToAdd == null) 
                 return;
@@ -735,13 +726,7 @@ namespace GrimrockAnimationTweaker
 
         IEnumerable<string> GetNodesSelection()
         {
-            HashSet<string> nodeNames = new HashSet<string>();
-
-            foreach (var n in m_Model.Nodes)
-                nodeNames.Add(n.Name);
-
-            IEnumerable<string> nodesToAdd = NodeSelectionDialog.GetSelectedNodes(nodeNames);
-
+            IEnumerable<string> nodesToAdd = NodeSelectionDialog.GetSelectedNodes(m_Model, null);
             return nodesToAdd;
         }
 

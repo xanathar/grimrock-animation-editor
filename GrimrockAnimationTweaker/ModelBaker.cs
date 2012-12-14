@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using GrimrockModelToolkit.Grim3d;
@@ -47,17 +48,20 @@ namespace GrimrockAnimationTweaker
         private void BakeNode(int nodeidx)
         {
             GrimModelNode node = m_Model.Nodes[nodeidx];
+            Debug.WriteLine(string.Format("Baking node {0}", node.Name));
 
             GrimMat4x3 matrix = node.LocalToParent;
             node.LocalToParent = GrimMat4x3.IdentityMatrix();
 
             if (node.Type == 0)
             {
+                Debug.WriteLine(string.Format("Baking vertices {0}", node.Name));
                 BakeVertices(node.MeshEntity, matrix);
             }
 
             foreach (GrimModelNode childnode in m_Model.GetChildren(nodeidx))
             {
+                Debug.WriteLine(string.Format("Baking matrix of {0}", childnode.Name));
                 BakeMatrix(childnode, matrix);
             }
         }
@@ -81,7 +85,7 @@ namespace GrimrockAnimationTweaker
             node.LocalToParent = matrix.Mul(node.LocalToParent);
         }
 
-
+        
 
 
     }

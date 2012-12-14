@@ -62,11 +62,11 @@ namespace GrimJazzAnimationScaler
                 return;
             }
 
-            //if (!Directory.Exists(txtAnimationFolder.Text))
-            //{
-            //    MessageBox.Show(this, "The specified animation folder cannot be found.", "Invalid selection", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-            //    return;
-            //}
+            if (!Directory.Exists(txtAnimationFolder.Text))
+            {
+                MessageBox.Show(this, "The specified animation folder cannot be found.", "Invalid selection", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
 
             //if (!Directory.EnumerateFiles(txtAnimationFolder.Text, "*.animation").Any())
             //{
@@ -81,8 +81,8 @@ namespace GrimJazzAnimationScaler
         {
             if (Debugger.IsAttached)
             {
-                txtModelFile.Text = @"C:\gr\dh\rk_daemon_head.model";
-                txtAnimationFolder.Text = @"C:\gr\dh"; //C:\gr\tsg\mod_assets\animations\monsters\spider";
+                txtModelFile.Text = @"C:\gr\t\chest.model";
+                txtAnimationFolder.Text = @"C:\gr\t"; //C:\gr\tsg\mod_assets\animations\monsters\spider";
             }
         }
 

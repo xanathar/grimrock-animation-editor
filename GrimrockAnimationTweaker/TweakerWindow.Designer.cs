@@ -50,8 +50,6 @@ namespace GrimrockAnimationTweaker
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.alwaysKeepQuaternionsNormalizedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.animEditor = new AnimationEditor.FrameEditorControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -117,9 +115,7 @@ namespace GrimrockAnimationTweaker
             this.toolStripSeparator1,
             this.toolStripDropDownButton1,
             this.toolStripSeparator2,
-            this.toolStripDropDownButton2,
-            this.toolStripSeparator3,
-            this.toolStripButton1});
+            this.toolStripDropDownButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -289,21 +285,6 @@ namespace GrimrockAnimationTweaker
             this.alwaysKeepQuaternionsNormalizedToolStripMenuItem.Name = "alwaysKeepQuaternionsNormalizedToolStripMenuItem";
             this.alwaysKeepQuaternionsNormalizedToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
             this.alwaysKeepQuaternionsNormalizedToolStripMenuItem.Text = "Always keep quaternions normalized";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // splitContainer1
             // 
@@ -773,7 +754,6 @@ namespace GrimrockAnimationTweaker
         private System.Windows.Forms.ToolStripMenuItem alwaysKeepQuaternionsNormalizedToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button btnRotWiz;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolNewFile;
         private System.Windows.Forms.ToolStripButton toolNewNode;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
@@ -786,7 +766,6 @@ namespace GrimrockAnimationTweaker
         private System.Windows.Forms.ToolStripButton toolSnapDel;
         private System.Windows.Forms.ToolStripButton toolSnapRestore;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem modelBakeMatricesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modelAddFakeBoneToNodeToolStripMenuItem;
     }

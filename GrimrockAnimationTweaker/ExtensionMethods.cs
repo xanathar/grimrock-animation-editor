@@ -121,11 +121,15 @@ namespace GrimrockAnimationTweaker
 
         public static GrimVec3 Transform(this GrimMat4x3 m, GrimVec3 v)
         {
+            GrimVec3 vx = new GrimVec3() { X = m.BaseX.X, Y = m.BaseY.X, Z = m.BaseZ.X };
+            GrimVec3 vy = new GrimVec3() { X = m.BaseX.Y, Y = m.BaseY.Y, Z = m.BaseZ.Y };
+            GrimVec3 vz = new GrimVec3() { X = m.BaseX.Z, Y = m.BaseY.Z, Z = m.BaseZ.Z };
+
             return new GrimVec3()
             {
-                X = GrimVec3.Dot(m.BaseX, v) + m.Translation.X,
-                Y = GrimVec3.Dot(m.BaseY, v) + m.Translation.Y,
-                Z = GrimVec3.Dot(m.BaseZ, v) + m.Translation.Z
+                X = GrimVec3.Dot(vx, v) + m.Translation.X,
+                Y = GrimVec3.Dot(vy, v) + m.Translation.Y,
+                Z = GrimVec3.Dot(vz, v) + m.Translation.Z
             };
         }
 
@@ -163,9 +167,9 @@ namespace GrimrockAnimationTweaker
         {
             Matrix3D M1 = m1.ToClrMatrix();
             Matrix3D M2 = m2.ToClrMatrix();
-            M1.Append(M2);
+            M2.Append(M1);
             GrimMat4x3 res = new GrimMat4x3();
-            res.SetFromClrMatrix(M1);
+            res.SetFromClrMatrix(M2);
             return res;
         }
 
