@@ -15,6 +15,11 @@ C:\prg\GrimJazzAnimationScaler\FrameEditControlsTests\obj\x86\Debug\GrimrockAnim
 C:\prg\GrimJazzAnimationScaler\FrameEditControlsTests\obj\x86\Debug\GrimrockAnimationEditor.pdb
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\GrimrockAnimationEditor.exe
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\GrimrockAnimationEditor.pdb
+C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.csprojResolveAssemblyReference.cache
+C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.Form1.resources
+C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\GrimJazzAnimationScaler.OpenAnimation.resources
+C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.Properties.Resources.resources
+C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.csproj.GenerateResource.Cache
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\GrimrockAnimationEditor.exe
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\GrimrockAnimationEditor.pdb
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\AnimationEditor.dll
@@ -23,8 +28,3 @@ C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\Grim3d.dll
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\AnimationEditor.pdb
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\GrimrockAnimationTweaker.pdb
 C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\bin\Debug\Grim3d.pdb
-C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.csprojResolveAssemblyReference.cache
-C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.Form1.resources
-C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\GrimJazzAnimationScaler.OpenAnimation.resources
-C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.Properties.Resources.resources
-C:\prg\GrimRockAnimationEditor\FrameEditControlsTests\obj\x86\Debug\FrameEditControlsTests.csproj.GenerateResource.Cache

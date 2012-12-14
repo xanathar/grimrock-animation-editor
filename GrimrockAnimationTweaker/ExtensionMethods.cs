@@ -113,5 +113,61 @@ namespace GrimrockAnimationTweaker
         {
             return mdl.Nodes.Find(mn => mn.Name == p);
         }
+
+        public static IEnumerable<GrimModelNode> GetChildren(this GrimModel mdl, int parentIdx)
+        {
+            return mdl.Nodes.Where(n => n.Parent == parentIdx);
+        }
+
+        public static GrimVec3 Transform(this GrimMat4x3 m, GrimVec3 v)
+        {
+            return new GrimVec3()
+            {
+                X = GrimVec3.Dot(m.BaseX, v) + m.Translation.X,
+                Y = GrimVec3.Dot(m.BaseY, v) + m.Translation.Y,
+                Z = GrimVec3.Dot(m.BaseZ, v) + m.Translation.Z
+            };
+        }
+
+        public static Matrix3D ToClrMatrix(this GrimMat4x3 m)
+        {
+            return new Matrix3D()
+            {
+                M11 = m.BaseX.X,
+                M12 = m.BaseX.Y,
+                M13 = m.BaseX.Z,
+                M21 = m.BaseY.X,
+                M22 = m.BaseY.Y,
+                M23 = m.BaseY.Z,
+                M31 = m.BaseZ.X,
+                M32 = m.BaseZ.Y,
+                M33 = m.BaseZ.Z,
+                OffsetX = m.Translation.X,
+                OffsetY = m.Translation.Y,
+                OffsetZ = m.Translation.Z
+            };
+        }
+
+        public static void SetFromClrMatrix(this GrimMat4x3 m, Matrix3D M)
+        {
+            m.BaseX = new GrimVec3((float)M.M11, (float)M.M12, (float)M.M13);
+            m.BaseY = new GrimVec3((float)M.M21, (float)M.M22, (float)M.M23);
+            m.BaseZ = new GrimVec3((float)M.M31, (float)M.M32, (float)M.M33);
+            m.Translation.X = (float)M.OffsetX;
+            m.Translation.Y = (float)M.OffsetY;
+            m.Translation.Z = (float)M.OffsetZ;
+        }
+
+
+        public static GrimMat4x3 Mul(this GrimMat4x3 m1, GrimMat4x3 m2)
+        {
+            Matrix3D M1 = m1.ToClrMatrix();
+            Matrix3D M2 = m2.ToClrMatrix();
+            M1.Append(M2);
+            GrimMat4x3 res = new GrimMat4x3();
+            res.SetFromClrMatrix(M1);
+            return res;
+        }
+
     }
 }

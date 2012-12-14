@@ -6,11 +6,3 @@ C:\prg\GrimJazzAnimationScaler\Grim3d\bin\Debug\SlimDX.pdb
 C:\prg\GrimJazzAnimationScaler\Grim3d\bin\Debug\SlimDX.xml
 C:\prg\GrimJazzAnimationScaler\Grim3d\obj\Debug\Grim3d.dll
 C:\prg\GrimJazzAnimationScaler\Grim3d\obj\Debug\Grim3d.pdb
-C:\prg\GrimRockAnimationEditor\Grim3d\bin\Debug\Grim3d.dll
-C:\prg\GrimRockAnimationEditor\Grim3d\bin\Debug\Grim3d.pdb
-C:\prg\GrimRockAnimationEditor\Grim3d\bin\Debug\SlimDX.dll
-C:\prg\GrimRockAnimationEditor\Grim3d\bin\Debug\SlimDX.pdb
-C:\prg\GrimRockAnimationEditor\Grim3d\bin\Debug\SlimDX.xml
-C:\prg\GrimRockAnimationEditor\Grim3d\obj\Debug\Grim3d.csprojResolveAssemblyReference.cache
-C:\prg\GrimRockAnimationEditor\Grim3d\obj\Debug\Grim3d.dll
-C:\prg\GrimRockAnimationEditor\Grim3d\obj\Debug\Grim3d.pdb

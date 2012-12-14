@@ -28,6 +28,12 @@ namespace FrameEditControlsTests
             }
 
             panel1.LoadAllAnimations(pars.Item2, pars.Item1);
+            panel1.ModelChanged += panel1_ModelChanged;
+        }
+
+        void panel1_ModelChanged(object sender, EventArgs e)
+        {
+            toolSaveModel.Enabled = true;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -38,6 +44,12 @@ namespace FrameEditControlsTests
         private void toolAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show(this, "Program by Xanathar, 2012\n\nPlease report all bugs in GrimRock forums.", "About");
+        }
+
+        private void toolSaveModel_Click(object sender, EventArgs e)
+        {
+            panel1.SaveOverwriteModel();
+            toolSaveModel.Enabled = false;
         }
     }
 }

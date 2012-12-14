@@ -18,6 +18,7 @@ namespace GrimrockAnimationTweaker
     public partial class TweakerWindow: UserControl
     {
         GrimModel m_Model;
+        string m_ModelPath;
         Dictionary<string, string> m_Parents = new Dictionary<string, string>();
 
         public TweakerWindow()
@@ -43,6 +44,7 @@ namespace GrimrockAnimationTweaker
         public void LoadAllAnimations(string path, string modelPath)
         {
             m_Model = GrimModel.LoadFromPath(modelPath);
+            m_ModelPath = modelPath;
             m_Parents = m_Model.Nodes.ToDictionary(nn => nn.Name, nn => nn.Parent >= 0 ? m_Model.Nodes[nn.Parent].Name : null);
 
             if (!string.IsNullOrEmpty(path))
@@ -735,11 +737,6 @@ namespace GrimrockAnimationTweaker
         {
             HashSet<string> nodeNames = new HashSet<string>();
 
-            GrimAnimation ga = this.GetAnimationFromSelection(animEditor.Selection);
-
-            if (ga == null) 
-                return null;
-
             foreach (var n in m_Model.Nodes)
                 nodeNames.Add(n.Name);
 
@@ -751,8 +748,13 @@ namespace GrimrockAnimationTweaker
 
         private void modelBakeMatricesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            IEnumerable<string> nodes = GetNodesSelection();
+            if (nodes == null) return;
 
+            ModelBaker mb = new ModelBaker(m_Model);
+            mb.BakeNodes(nodes);
 
+            ReportModelChanged();
         }
 
         private void modelAddFakeBoneToNodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -785,12 +787,16 @@ namespace GrimrockAnimationTweaker
 
         private void ReportModelChanged()
         {
-            throw new NotImplementedException();
+            if (ModelChanged != null)
+                ModelChanged(this, EventArgs.Empty);
         }
 
+        public event EventHandler ModelChanged;
 
 
-
-
+        public void SaveOverwriteModel()
+        {
+            m_Model.WriteToPath(m_ModelPath);
+        }
     }
 }

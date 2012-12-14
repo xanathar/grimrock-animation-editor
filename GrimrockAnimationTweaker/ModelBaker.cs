@@ -15,25 +15,70 @@ namespace GrimrockAnimationTweaker
             m_Model = model;
         }
 
-        IEnumerable<int> PostOrderVisit(int root = -1)
+        IEnumerable<int> PreOrderVisit(int root = -1)
         {
-            for(int i = 0, len = m_Model.Nodes.Count; i < len; i++)
+            if (root >= 0)
+                yield return root;
+
+            for (int i = 0, len = m_Model.Nodes.Count; i < len; i++)
             {
                 if (m_Model.Nodes[i].Parent == root)
                 {
-                    foreach(int n in PostOrderVisit(i)) 
+                    foreach (int n in PreOrderVisit(i)) 
                         yield return n;
                 }
             }
-
-            if (root >= 0)
-                yield return root;
         }
 
 
         public void BakeNodes(IEnumerable<string> nodesToBake)
         {
+            HashSet<string> nodesToBakeSet = new HashSet<string>(nodesToBake);
 
+            foreach (int nodeidx in PreOrderVisit())
+            {
+                if (nodesToBakeSet.Contains(m_Model.Nodes[nodeidx].Name))
+                {
+                    BakeNode(nodeidx);
+                }
+            }
+        }
+
+        private void BakeNode(int nodeidx)
+        {
+            GrimModelNode node = m_Model.Nodes[nodeidx];
+
+            GrimMat4x3 matrix = node.LocalToParent;
+            node.LocalToParent = GrimMat4x3.IdentityMatrix();
+
+            if (node.Type == 0)
+            {
+                BakeVertices(node.MeshEntity, matrix);
+            }
+
+            foreach (GrimModelNode childnode in m_Model.GetChildren(nodeidx))
+            {
+                BakeMatrix(childnode, matrix);
+            }
+        }
+
+        private void BakeVertices(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
+        {
+            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[0];
+
+            GrimVec3[] vertices = vertArray.getVertexDataAsVec3Array();
+
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                vertices[i] = matrix.Transform(vertices[i]);
+            }
+
+            vertArray.putVertexDataAsVec3Array(vertices);
+        }
+
+        private void BakeMatrix(GrimModelNode node, GrimMat4x3 matrix)
+        {
+            node.LocalToParent = matrix.Mul(node.LocalToParent);
         }
 
 

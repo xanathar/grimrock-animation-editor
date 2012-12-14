@@ -81,8 +81,8 @@ namespace GrimJazzAnimationScaler
         {
             if (Debugger.IsAttached)
             {
-                txtModelFile.Text = @"C:\gr\slime\slime.model";
-                txtAnimationFolder.Text = @"C:\gr\Tsg\mod_assets\animations\monsters\slime"; //C:\gr\tsg\mod_assets\animations\monsters\spider";
+                txtModelFile.Text = @"C:\gr\dh\rk_daemon_head.model";
+                txtAnimationFolder.Text = @"C:\gr\dh"; //C:\gr\tsg\mod_assets\animations\monsters\spider";
             }
         }
 

@@ -32,10 +32,10 @@ namespace FrameEditControlsTests
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.panel1 = new GrimrockAnimationTweaker.TweakerWindow();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolAbout = new System.Windows.Forms.ToolStripButton();
             this.toolSaveModel = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new GrimrockAnimationTweaker.TweakerWindow();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,15 +50,6 @@ namespace FrameEditControlsTests
             this.toolStrip1.Size = new System.Drawing.Size(849, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.MinimumSize = new System.Drawing.Size(200, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(849, 565);
-            this.panel1.TabIndex = 2;
             // 
             // toolStripButton1
             // 
@@ -88,6 +79,16 @@ namespace FrameEditControlsTests
             this.toolSaveModel.Name = "toolSaveModel";
             this.toolSaveModel.Size = new System.Drawing.Size(97, 22);
             this.toolSaveModel.Text = "Save Model";
+            this.toolSaveModel.Click += new System.EventHandler(this.toolSaveModel_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.MinimumSize = new System.Drawing.Size(200, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(849, 565);
+            this.panel1.TabIndex = 2;
             // 
             // Form1
             // 
