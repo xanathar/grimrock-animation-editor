@@ -1,0 +1,17 @@
+﻿=======================================
++ CHANGELOG +
+=======================================
+
+
+
+
+07/Nov
+=====
+- Fixed resampling crashing on 1 frame selection
+- Fixed resampling not working on some ranges
+- Fixed repeat of frames not working
+- Changed algor. for monster resizing preset
+- 
+
+
+
