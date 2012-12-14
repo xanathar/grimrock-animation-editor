@@ -162,6 +162,24 @@ namespace GrimrockAnimationTweaker
             m.Translation.Z = (float)M.OffsetZ;
         }
 
+        public static GrimMat4x3 InverseTranspose(this GrimMat4x3 m)
+        {
+            Matrix3D M = m.ToClrMatrix();
+            M.OffsetX = M.OffsetY = M.OffsetZ = 0;
+            M.Invert();
+            M.M11 = M.M11;
+            M.M21 = M.M12;
+            M.M31 = M.M13;
+            M.M12 = M.M21;
+            M.M22 = M.M22;
+            M.M32 = M.M23;
+            M.M13 = M.M31;
+            M.M23 = M.M32;
+            M.M33 = M.M33;
+            GrimMat4x3 res = new GrimMat4x3();
+            res.SetFromClrMatrix(M);
+            return res;
+        }
 
         public static GrimMat4x3 Mul(this GrimMat4x3 m1, GrimMat4x3 m2)
         {

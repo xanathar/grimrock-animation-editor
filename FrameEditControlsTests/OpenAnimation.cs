@@ -81,8 +81,8 @@ namespace GrimJazzAnimationScaler
         {
             if (Debugger.IsAttached)
             {
-                txtModelFile.Text = @"C:\gr\DaemonHead\mod_assets\models\rk_daemon_head.model";
-                txtAnimationFolder.Text = @"C:\gr\DaemonHead\mod_assets\models";
+                txtModelFile.Text = @"C:\gr\t\chest.model";
+                txtAnimationFolder.Text = @"C:\gr\t";
             }
         }
 

@@ -57,6 +57,8 @@ namespace GrimrockAnimationTweaker
             {
                 Debug.WriteLine(string.Format("Baking vertices {0}", node.Name));
                 BakeVertices(node.MeshEntity, matrix);
+                BakeNormals(node.MeshEntity, matrix);
+                BakeTangents(node.MeshEntity, matrix);
             }
 
             foreach (GrimModelNode childnode in m_Model.GetChildren(nodeidx))
@@ -64,6 +66,48 @@ namespace GrimrockAnimationTweaker
                 Debug.WriteLine(string.Format("Baking matrix of {0}", childnode.Name));
                 BakeMatrix(childnode, matrix);
             }
+        }
+
+        private void BakeTangents(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
+        {
+            for (int arrayIdx = 2; arrayIdx <= 3; arrayIdx++)
+            {
+                GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[arrayIdx];
+
+                if (vertArray.RawVertexData == null)
+                    continue;
+
+                GrimMat4x3 notrans = new GrimMat4x3(matrix.BaseX, matrix.BaseY, matrix.BaseY, new GrimVec3());
+                GrimVec3[] tangs = vertArray.getVertexDataAsVec3Array();
+
+                for (int i = 0; i < tangs.Length; i++)
+                {
+                    tangs[i] = notrans.Transform(tangs[i]);
+                    tangs[i].Normalize();
+                }
+
+                vertArray.putVertexDataAsVec3Array(tangs);
+            }
+        }
+
+        private void BakeNormals(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
+        {
+            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[1];
+
+            if (vertArray.RawVertexData == null) 
+                return;
+
+            GrimMat4x3 itm = matrix.InverseTranspose();
+
+            GrimVec3[] normals = vertArray.getVertexDataAsVec3Array();
+
+            for (int i = 0; i < normals.Length; i++)
+            {
+                normals[i] = itm.Transform(normals[i]);
+                normals[i].Normalize();
+            }
+
+            vertArray.putVertexDataAsVec3Array(normals);
         }
 
         private void BakeVertices(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
