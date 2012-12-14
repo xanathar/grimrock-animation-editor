@@ -45,8 +45,11 @@ namespace GrimrockAnimationTweaker
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.scaleAnimationOfPredefinedMonsterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.modelBakeMatricesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelAddFakeBoneToNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.dumpModelDataOnTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.alwaysKeepQuaternionsNormalizedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -232,13 +235,16 @@ namespace GrimrockAnimationTweaker
             // 
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scaleAnimationOfPredefinedMonsterToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.modelBakeMatricesToolStripMenuItem,
-            this.modelAddFakeBoneToNodeToolStripMenuItem});
+            this.modelAddFakeBoneToNodeToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.dumpModelDataOnTextFileToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(79, 22);
-            this.toolStripDropDownButton1.Text = "Presets";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(82, 22);
+            this.toolStripDropDownButton1.Text = "Process";
             // 
             // scaleAnimationOfPredefinedMonsterToolStripMenuItem
             // 
@@ -247,6 +253,11 @@ namespace GrimrockAnimationTweaker
             this.scaleAnimationOfPredefinedMonsterToolStripMenuItem.Tag = "";
             this.scaleAnimationOfPredefinedMonsterToolStripMenuItem.Text = "Scale animation of predefined monster";
             this.scaleAnimationOfPredefinedMonsterToolStripMenuItem.Click += new System.EventHandler(this.scaleAnimationOfPredefinedMonsterToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(302, 6);
             // 
             // modelBakeMatricesToolStripMenuItem
             // 
@@ -261,6 +272,18 @@ namespace GrimrockAnimationTweaker
             this.modelAddFakeBoneToNodeToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.modelAddFakeBoneToNodeToolStripMenuItem.Text = "Model - Duplicate node to bone+mesh";
             this.modelAddFakeBoneToNodeToolStripMenuItem.Click += new System.EventHandler(this.modelAddFakeBoneToNodeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(302, 6);
+            // 
+            // dumpModelDataOnTextFileToolStripMenuItem
+            // 
+            this.dumpModelDataOnTextFileToolStripMenuItem.Name = "dumpModelDataOnTextFileToolStripMenuItem";
+            this.dumpModelDataOnTextFileToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.dumpModelDataOnTextFileToolStripMenuItem.Text = "Dump model data on text file";
+            this.dumpModelDataOnTextFileToolStripMenuItem.Click += new System.EventHandler(this.dumpModelDataOnTextFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -768,5 +791,8 @@ namespace GrimrockAnimationTweaker
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem modelBakeMatricesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modelAddFakeBoneToNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem dumpModelDataOnTextFileToolStripMenuItem;
     }
 }

@@ -47,6 +47,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDumper.cs" />
     <Compile Include="ModelBaker.cs" />
     <Compile Include="NodeSelectionDialog.cs">
       <SubType>Form</SubType>

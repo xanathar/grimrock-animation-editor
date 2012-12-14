@@ -72,7 +72,8 @@ namespace GrimrockAnimationTweaker
 
             foreach (GrimAnimationItemAdapter ai in items.Values)
             {
-                string parent = parents[ai.Name];
+                string parent = null;
+                if (parents.ContainsKey(ai.Name)) parent = parents[ai.Name];
 
                 if (parent != null)
                 {
@@ -744,6 +745,9 @@ namespace GrimrockAnimationTweaker
 
         private void modelAddFakeBoneToNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            const int VERTEX_ARRAY_BONE_INDEX = 13;
+            const int VERTEX_ARRAY_BONE_WEIGHT = 14;
+
             IEnumerable<string> nodes = GetNodesSelection();
             if (nodes == null) return;
 
@@ -761,11 +765,28 @@ namespace GrimrockAnimationTweaker
                 int boneidx = m_Model.Nodes.Count;
                 m_Model.Nodes.Add(bone);
 
-                GrimModelMeshEntity meshn = node.MeshEntity;
-                meshn.Bones = new GrimModelBone[] { new GrimModelBone() { BoneNodeIndex = boneidx, InvRestMatrix = GrimMat4x3.IdentityMatrix() } };
+                node.MeshEntity.Bones = new GrimModelBone[] { new GrimModelBone() { BoneNodeIndex = boneidx, InvRestMatrix = GrimMat4x3.IdentityMatrix() } };
 
-                ReportModelChanged();
+                GrimModelMeshData meshData = node.MeshEntity.MeshData;
+
+                GrimModelVertexArray boneI = meshData.VertexArrays[VERTEX_ARRAY_BONE_INDEX];
+                GrimModelVertexArray boneW = meshData.VertexArrays[VERTEX_ARRAY_BONE_WEIGHT];
+
+                byte[][] arri = new byte[meshData.NumVertices][];
+                byte[][] arrw = new byte[meshData.NumVertices][];
+
+                for (int i = 0; i < arri.Length; i++)
+                    arri[i] = new byte[4] { 0, 0, 0, 0 };
+
+                for (int i = 0; i < arrw.Length; i++)
+                    arrw[i] = new byte[4] { 1, 0, 0, 0 };
+
+                boneI.putVertexDataAsByteArray(arri);
+                boneW.putVertexDataAsByteArray(arrw);
             }
+            ReportModelChanged();
+
+            MessageBox.Show(this, "It's recommended to restart the animation editor, after saving the model.", "Done");
 
 
         }
@@ -782,6 +803,24 @@ namespace GrimrockAnimationTweaker
         public void SaveOverwriteModel()
         {
             m_Model.WriteToPath(m_ModelPath);
+        }
+
+        private void dumpModelDataOnTextFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save info file";
+            sfd.OverwritePrompt = true;
+            sfd.DefaultExt = "txt";
+            sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                using (TextWriter tw = new StreamWriter(sfd.FileName))
+                {
+                    DataDumper dd = new DataDumper(m_Model, m_ModelPath, tw);
+                    dd.DumpModel();
+                }
+            }
         }
     }
 }
