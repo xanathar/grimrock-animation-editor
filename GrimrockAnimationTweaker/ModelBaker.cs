@@ -10,6 +10,10 @@ namespace GrimrockAnimationTweaker
     public class ModelBaker
     {
         readonly GrimModel m_Model;
+        const int VERTEX_ARRAY_POSITION = 0;
+        const int VERTEX_ARRAY_NORMAL = 1;
+        const int VERTEX_ARRAY_TANGENT = 2;
+        const int VERTEX_ARRAY_BITANGENT = 3;
 
         public ModelBaker(GrimModel model)
         {
@@ -25,7 +29,7 @@ namespace GrimrockAnimationTweaker
             {
                 if (m_Model.Nodes[i].Parent == root)
                 {
-                    foreach (int n in PreOrderVisit(i)) 
+                    foreach (int n in PreOrderVisit(i))
                         yield return n;
                 }
             }
@@ -48,14 +52,12 @@ namespace GrimrockAnimationTweaker
         private void BakeNode(int nodeidx)
         {
             GrimModelNode node = m_Model.Nodes[nodeidx];
-            Debug.WriteLine(string.Format("Baking node {0}", node.Name));
 
             GrimMat4x3 matrix = node.LocalToParent;
             node.LocalToParent = GrimMat4x3.IdentityMatrix();
 
             if (node.Type == 0)
             {
-                Debug.WriteLine(string.Format("Baking vertices {0}", node.Name));
                 BakeVertices(node.MeshEntity, matrix);
                 BakeNormals(node.MeshEntity, matrix);
                 BakeTangents(node.MeshEntity, matrix);
@@ -63,14 +65,13 @@ namespace GrimrockAnimationTweaker
 
             foreach (GrimModelNode childnode in m_Model.GetChildren(nodeidx))
             {
-                Debug.WriteLine(string.Format("Baking matrix of {0}", childnode.Name));
                 BakeMatrix(childnode, matrix);
             }
         }
 
         private void BakeTangents(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
         {
-            for (int arrayIdx = 2; arrayIdx <= 3; arrayIdx++)
+            foreach (int arrayIdx in new int[] { VERTEX_ARRAY_TANGENT, VERTEX_ARRAY_BITANGENT })
             {
                 GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[arrayIdx];
 
@@ -92,9 +93,9 @@ namespace GrimrockAnimationTweaker
 
         private void BakeNormals(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
         {
-            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[1];
+            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[VERTEX_ARRAY_NORMAL];
 
-            if (vertArray.RawVertexData == null) 
+            if (vertArray.RawVertexData == null)
                 return;
 
             GrimMat4x3 itm = matrix.InverseTranspose();
@@ -112,7 +113,7 @@ namespace GrimrockAnimationTweaker
 
         private void BakeVertices(GrimModelMeshEntity grimModelMeshEntity, GrimMat4x3 matrix)
         {
-            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[0];
+            GrimModelVertexArray vertArray = grimModelMeshEntity.MeshData.VertexArrays[VERTEX_ARRAY_POSITION];
 
             GrimVec3[] vertices = vertArray.getVertexDataAsVec3Array();
 
@@ -129,7 +130,7 @@ namespace GrimrockAnimationTweaker
             node.LocalToParent = matrix.Mul(node.LocalToParent);
         }
 
-        
+
 
 
     }
